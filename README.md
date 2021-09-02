@@ -1,13 +1,21 @@
 # GraphQL demo for Search 
 
-## schema 
+## how to run
+
+- listen on :8080
+
+```sh
+go run server.go
+```
+
+## schema
 
 ```graphql
 
 interface SearchTamplate {
   id: ID! 
   type: String! ## search result type for example , 
-  		## list data, ScoreCard data Poster Data
+  		## list Poster data, ScoreCard data 
 }
 
 type ListData implements SearchTamplate {
