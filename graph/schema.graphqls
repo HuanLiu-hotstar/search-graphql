@@ -1,0 +1,66 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+# type Todo {
+#   id: ID!
+#   text: String!
+#   done: Boolean!
+#   user: User!
+# }
+
+# type User {
+#   id: ID!
+#   name: String!
+# }
+
+# type Query {
+#   todos: [Todo!]!
+# }
+
+# input NewTodo {
+#   text: String!
+#   userId: String!
+# }
+
+# type Mutation {
+#   createTodo(input: NewTodo!): Todo!
+# }
+
+
+# schema for search page 
+
+interface SearchTamplate {
+  id: ID! 
+  type: String! ## search result type for example , Channel data, ScoreCard data Poster Data
+}
+
+type ListData implements SearchTamplate {
+  id: ID! 
+  type: String!
+  poster:[Poster!]
+}
+type Poster {
+  id: ID!
+  name: String!
+  url: String!
+}
+
+type ScoreCardData implements SearchTamplate {
+  id: ID! 
+  type: String! 
+  score_card:[ScoreCard!]
+}
+type ScoreCard {
+  id: ID!
+  teams:[Team!]
+}
+
+type Team {
+  id: ID!
+  name: String!
+}
+
+type Query {
+  search(search_word: String!): [SearchTamplate!]
+}
